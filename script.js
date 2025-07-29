@@ -52,7 +52,6 @@ LinkedIn:<a href="https://linkedin.com/in/johndoe" target="_blank">linkedin.com/
     `,
 };
 
-
 function toggleTheme() {
     applyTheme(isLightTheme ? 'dark' : 'light');
 }
@@ -76,6 +75,7 @@ Type 'help' to see a list of available commands.
 }
 
 function print(message) {
+    if (!output) return;
     const p = document.createElement('div');
     p.innerHTML = message;
     output.appendChild(p);
@@ -98,7 +98,7 @@ function handleCommand(e) {
             } else if (commands[command]) {
                 print(commands[command]);
             } else {
-                print(`${command} isn't a valid command: . Type 'help' for a list of commands.`);
+                print(`${command} isn't a valid command. Type 'help' for a list of commands.`);
             }
         }
     }
@@ -115,8 +115,10 @@ input.addEventListener('keydown', handleCommand);
 // Handle theme switcher click
 themeSwitcher.addEventListener('click', toggleTheme);
 
-// Initial setup
-const savedTheme = localStorage.getItem('portfolioTheme') || 'dark';
-applyTheme(savedTheme);
-printWelcomeMessage();
-input.focus();
+// Initial setup after DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('portfolioTheme') || 'dark';
+    applyTheme(savedTheme);
+    printWelcomeMessage();
+    input.focus();
+});
