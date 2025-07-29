@@ -82,7 +82,7 @@ function handleThemeCommand(args) {
 
 function printWelcomeMessage() {
     const welcome = `
-Welcome to my interactive portfolio!
+Welcome to John Doe's portfolio!
 Type 'help' to see a list of available commands.
     `;
     print(welcome);
