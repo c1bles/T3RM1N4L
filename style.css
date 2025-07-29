@@ -104,6 +104,10 @@ body.light-mode #sun-icon {
     word-break: break-all;
 }
 
+.projects li{
+  white-space: normal;
+}
+
 .input-line {
     display: flex;
     align-items: center;
