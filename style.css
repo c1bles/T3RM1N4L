@@ -1,0 +1,154 @@
+:root {
+    --background-color: #1e1e2e;
+    --text-color: #cdd6f4;
+    --prompt-color: #89b4fa;
+    --command-echo-color: #f9e2af;
+    --link-color: #a6e3a1;
+    --link-hover-color: #b4f9d1;
+    --scrollbar-track-color: #313244;
+    --scrollbar-thumb-color: #585b70;
+    --scrollbar-thumb-hover-color: #6c7086;
+    --caret-bg-color: #cdd6f4;
+    --caret-inset-bg-color: #1e1e2e;
+    --icon-color: #f9e2af;
+    --icon-hover-bg: rgba(205, 214, 244, 0.1);
+}
+
+body.light-mode {
+    --background-color: #eff1f5;
+    --text-color: #4c4f69;
+    --prompt-color: #1e66f5;
+    --command-echo-color: #fe640b;
+    --link-color: #40a02b;
+    --link-hover-color: #179299;
+    --scrollbar-track-color: #dce0e8;
+    --scrollbar-thumb-color: #acb0be;
+    --scrollbar-thumb-hover-color: #9ca0b0;
+    --caret-bg-color: #4c4f69;
+    --caret-inset-bg-color: #eff1f5;
+    --icon-color: #fe640b;
+    --icon-hover-bg: rgba(76, 79, 105, 0.1);
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1rem;
+    margin: 0;
+    padding: 30px 40px; /* More padding for aesthetics */
+    overflow: hidden; /* Hide body scrollbars */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#theme-switcher {
+    position: absolute;
+    top: 30px;    /* Match new body padding */
+    right: 40px;  /* Match new body padding */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+    z-index: 1000;
+}
+
+#theme-switcher:hover {
+    background-color: var(--icon-hover-bg);
+}
+
+#theme-switcher svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--icon-color);
+    display: none; /* Hide both by default */
+}
+
+body:not(.light-mode) #moon-icon,
+body.light-mode #sun-icon {
+    display: block; /* Show the correct one */
+}
+
+#terminal {
+    width: 100%;
+    height: calc(100vh - 60px); /* Adjust height for new body padding */
+    box-sizing: border-box;
+    cursor: text;
+    overflow-y: auto; /* Allow scrolling within the terminal */
+    padding-right: 10px; /* For scrollbar spacing */
+}
+
+/* Custom scrollbar for a more retro feel */
+#terminal::-webkit-scrollbar {
+  width: 10px;
+}
+
+#terminal::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-color);
+}
+
+#terminal::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-color);
+  border-radius: 2px;
+}
+
+#terminal::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover-color);
+}
+
+#output p, #output div {
+    margin: 0;
+    line-height: 1.5;
+    white-space: pre-wrap; /* Preserve whitespace and wrap text */
+    word-break: break-all;
+}
+
+.input-line {
+    display: flex;
+    align-items: center;
+}
+
+.prompt {
+    margin-right: 8px;
+    color: var(--prompt-color);
+    user-select: none;
+}
+
+.command-echo {
+    color: var(--command-echo-color);
+}
+
+#command-input {
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1rem;
+    flex-grow: 1;
+    outline: none;
+    caret-color: var(--caret-bg-color); /* Use standard blinking caret */
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+}
+
+.projects ul {
+    list-style-type: none;
+    padding-left: 1rem;
+}
+
+.projects li {
+    margin-bottom: 0.5em;
+}
+
+.project-title {
+    color: var(--text-color);
+    font-weight: bold;
+}
