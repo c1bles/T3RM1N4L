@@ -1,4 +1,5 @@
 // Thank you for using my template! It's kind of my first time making one so uhh yaaa, enjoy!! :3
+// Also, there might be some issues with the welcome message. It works 50% of the time, if someone could open a pull request I'd gladly appreciate it!
 const terminal = document.getElementById('terminal');
 const output = document.getElementById('output');
 const input = document.getElementById('command-input');
@@ -6,14 +7,15 @@ const themeSwitcher = document.getElementById('theme-switcher');
 
 let isLightTheme = false;
 
-// Commands and their output
+// Commands and their output.
 const commands = {
     help: `
 Available commands:
-  <span class="command-echo">about</span>      - Who am I?
+  <span class="command-echo">about</span>      - Who's John Doe?
   <span class="command-echo">projects</span>   - View my work
   <span class="command-echo">contact</span>    - How to reach me
-  <span class="command-echo">clear</span>      - Clear the terminal
+  <span class="command-echo">clear</span>      - Clear the terminal screen
+  <span class="command-echo">theme</span>      - Change the theme (e.g., 'theme light', 'theme dark')
   <span class="command-echo">help</span>       - Show this help message
     `,
     about: `
@@ -29,17 +31,17 @@ Here are some of my projects:
     <li>
         <p class="project-title">Project Alpha</p>
         <p>A web-based platform for real-time data visualization. Built with D3.js and WebSockets.</p>
-        <a href="#" target="example.com">[Live Demo]</a> <a href="#" target="example.com">[GitHub]</a>
+        <a href="example.com" target="_blank">[Live Demo]</a> <a href="github.com" target="_blank">[GitHub]</a>
     </li>
     <li>
         <p class="project-title">Project Beta</p>
         <p>An e-commerce site for a local business, featuring a custom CMS. Built with Django and Stripe.</p>
-        <a href="#" target="example.com">[Live Demo]</a> <a href="#" target="example.com">[GitHub]</a>
+        <a href="example.com" target="_blank">[Live Demo]</a> <a href="github.Com" target="_blank">[GitHub]</a>
     </li>
     <li>
         <p class="project-title">Project Gamma</p>
         <p>A mobile-first progressive web app for task management. Built with Vue.js and Firebase.</p>
-        <a href="#" target="example.com">[Live Demo]</a> <a href="#" target="example.com">[GitHub]</a>
+        <a href="example.com" target="_blank">[Live Demo]</a> <a href="github.com" target="_blank">[GitHub]</a>
     </li>
 </ul>
     `,
@@ -52,6 +54,17 @@ LinkedIn:<a href="https://linkedin.com/in/johndoe" target="_blank">linkedin.com/
     `,
 };
 
+function applyTheme(theme) {
+    if (theme === 'light') {
+        document.body.classList.add('light-mode');
+        isLightTheme = true;
+        localStorage.setItem('portfolioTheme', 'light');
+    } else {
+        document.body.classList.remove('light-mode');
+        isLightTheme = false;
+        localStorage.setItem('portfolioTheme', 'dark');
+    }
+}
 
 function toggleTheme() {
     applyTheme(isLightTheme ? 'dark' : 'light');
@@ -69,7 +82,7 @@ function handleThemeCommand(args) {
 
 function printWelcomeMessage() {
     const welcome = `
-Welcome to John Doe's interactive portfolio!
+Welcome to John Doe's portfolio!
 Type 'help' to see a list of available commands.
     `;
     print(welcome);
@@ -98,7 +111,7 @@ function handleCommand(e) {
             } else if (commands[command]) {
                 print(commands[command]);
             } else {
-                print(`${command} isn't a valid command: . Type 'help' for a list of commands.`);
+                print(`Command not found: ${command}. Type 'help' for a list of commands.`);
             }
         }
     }
