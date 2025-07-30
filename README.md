@@ -43,6 +43,8 @@ Repository link: https://github.com/c1bles/T3RM1N4L/
 ```
 > Don't forget to add your newly made command to the `help` one, _unless you want to make it a secretttt..._
 
+> To add dashes and such to your command, use quotation marks. eg. "re-po"
+
 </details>
 
 <details closed="">
